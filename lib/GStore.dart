@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workshops_flutter_4sim3/Widgets/CardWidget.dart';
 class GStore extends StatefulWidget {
   const GStore({super.key});
 
@@ -11,84 +12,17 @@ class _GStoreState extends State<GStore> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home"),
+        title: Text("G-STORE",style: TextStyle(color: Colors.white),),
+        backgroundColor: Colors.black,
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Card(
-              elevation: 6,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  children: [
-                    Image.asset("assets/images/HouseOfDead.jpg"),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("House Of Dead",style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold
-                          ),),
-                          Icon(Icons.star,color: Colors.amber,)
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Card(
-              elevation: 6,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  children: [
-                    Image.asset("assets/images/thegrudge.jpg"),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("The Grudge",style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold
-                          ),),
-                          Icon(Icons.star,color: Colors.amber,)
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Card(
-              elevation: 6,
-              child: Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  children: [
-                    Image.asset("assets/images/iceroad.jpg"),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 10),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text("Ice Road",style: TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold
-                          ),),
-                          Icon(Icons.star,color: Colors.amber,)
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            )
-        
+          CardWidget(image: "HouseOfDead.jpg", title: "House Of Dead"),
+          CardWidget(image: "iceroad.jpg", title: "Ice Road"),
+          CardWidget(image: "theabyss.jpg", title: "The Abyss"),
+          CardWidget(image: "thegrudge.jpg", title: "The Grudge"),
+
           ],
         ),
       ),
