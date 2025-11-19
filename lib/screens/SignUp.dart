@@ -10,7 +10,6 @@ class _SignUpState extends State<SignUp> {
   late String email;
   late String username;
   late String password;
-
   GlobalKey<FormState> _globalKey=GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -20,9 +19,14 @@ class _SignUpState extends State<SignUp> {
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Image.asset("assets/images/logo.png"),
-              Text("Sign Up",style: TextStyle(fontWeight: FontWeight.bold)),
+              SizedBox(height: 20,),
+              Center(child: Image.asset("assets/images/logo.png",width: 200,)),
+              SizedBox(height: 20,),
+              Text("Sign Up",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25)),
+              SizedBox(height: 20,),
+
               TextFormField(
                 decoration: InputDecoration(
                   hintText: "Username",
@@ -30,7 +34,7 @@ class _SignUpState extends State<SignUp> {
                   border: OutlineInputBorder()
                 ),
                 onSaved: (value){
-                  username!=value;
+                  username=value!;
                 },
                 validator: (value){
                   if(value!.isEmpty){
@@ -38,6 +42,8 @@ class _SignUpState extends State<SignUp> {
                   }
                 },
               ),
+              SizedBox(height: 20,),
+
               TextFormField(
                 decoration: InputDecoration(
                     hintText: "Email",
@@ -45,7 +51,7 @@ class _SignUpState extends State<SignUp> {
                     border: OutlineInputBorder()
                 ),
                 onSaved: (value){
-                  email!=value;
+                  email=value!;
                 },
                 validator: (value){
                   if(value!.isEmpty){
@@ -53,6 +59,8 @@ class _SignUpState extends State<SignUp> {
                   }
                 },
               ),
+              SizedBox(height: 20,),
+
               TextFormField(
                 decoration: InputDecoration(
                     hintText: "Password",
@@ -60,7 +68,7 @@ class _SignUpState extends State<SignUp> {
                     border: OutlineInputBorder()
                 ),
                 onSaved: (value){
-                  password!=value;
+                  password=value!;
                 },
                 validator: (value){
                   if(value!.isEmpty){
@@ -68,12 +76,18 @@ class _SignUpState extends State<SignUp> {
                   }
                 },
               ),
+              SizedBox(height: 20,),
+
               Row(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   Text("Already have an account?"),
-                  Icon(Icons.arrow_forward_rounded)
+                  SizedBox(width: 10,),
+                  Icon(Icons.arrow_forward_rounded,color: Colors.deepOrange,)
                 ],
               ),
+              SizedBox(height: 20,),
+
               Container(
                 width: 400,
                 child: ElevatedButton(
@@ -81,8 +95,19 @@ class _SignUpState extends State<SignUp> {
                     backgroundColor: Colors.deepOrange,
                     foregroundColor: Colors.white
                   ),
-                    onPressed: (){},
-                    child: Text("SignUp")),
+                    onPressed: (){
+                    if(_globalKey.currentState!.validate()){
+                      _globalKey.currentState!.save();
+                      showDialog(context: context, builder: (context){
+                        return AlertDialog(
+                          title: Text("Informations"),
+                          content: Text("Welcome "+username),
+                        );
+                      });
+                    }
+
+                    },
+                    child: Text("SIGN UP")),
               )
 
             ],
