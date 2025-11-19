@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:workshops_flutter_4sim3/GStore.dart';
+import 'package:workshops_flutter_4sim3/Details.dart';
+import 'package:workshops_flutter_4sim3/MyFilmsListView.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const GStore(),
+      home: const MyFilmsListView(),
     );
   }
 }

@@ -1,10 +1,10 @@
 
 import 'package:flutter/material.dart';
 
-class CardWidget extends StatelessWidget {
+class itemListView extends StatelessWidget {
   final String image;
   final String title ;
-  const CardWidget({super.key,required this.image,required this.title});
+  const itemListView({super.key,required this.image,required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class CardWidget extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            Image.asset("assets/images/$image"),
+            Image.asset("$image"),
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: Row(
