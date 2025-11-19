@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:workshops_flutter_4sim3/Widgets/itemGridView.dart';
 import 'package:workshops_flutter_4sim3/Widgets/itemListView.dart';
 
-import 'entities/Film.dart';
-class MyFilmsListView extends StatefulWidget {
-  const MyFilmsListView({super.key});
+import '../entities/Film.dart';
+class MyFilsGridView extends StatefulWidget {
+  const MyFilsGridView({super.key});
 
   @override
-  State<MyFilmsListView> createState() => _MyFilmsListViewState();
+  State<MyFilsGridView> createState() => _MyFilmsListViewState();
 }
 
-class _MyFilmsListViewState extends State<MyFilmsListView> {
+class _MyFilmsListViewState extends State<MyFilsGridView> {
 
   final List<Film> films = const [
     const Film("House Of Dead", "assets/images/HouseOfDead.jpg","The House of the Dead is a classic arcade light gun shooter series from Sega that features government agents fighting hordes of biologically engineered undead and mutants",300),
@@ -21,15 +22,30 @@ class _MyFilmsListViewState extends State<MyFilmsListView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("G-STORE",style: TextStyle(color: Colors.white),),
-        backgroundColor: Colors.black,
-      ),
-      body: ListView.builder(
-         itemCount: films.length,
-          itemBuilder: (context,index){
-           return itemListView(image: films[index].image, title: films[index].title);
-          })
+        appBar: AppBar(
+          title: Text("G-STORE",style: TextStyle(color: Colors.white),),
+          backgroundColor: Colors.black,
+        ),
+        body: GridView.builder(
+          itemCount: films.length,
+
+
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+              mainAxisSpacing: 15,
+              crossAxisSpacing: 15,
+              mainAxisExtent: 155
+
+
+
+            ),
+            itemBuilder: (context,index){
+
+            return itemGridView(image: films[index].image, title: films[index].title);
+
+
+
+            })
     );
   }
 }

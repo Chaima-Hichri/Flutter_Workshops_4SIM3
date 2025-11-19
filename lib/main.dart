@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:workshops_flutter_4sim3/Details.dart';
-import 'package:workshops_flutter_4sim3/MyFilmsListView.dart';
+import 'package:workshops_flutter_4sim3/screens/Details.dart';
+import 'package:workshops_flutter_4sim3/screens/MyFilmsGridView.dart';
+import 'package:workshops_flutter_4sim3/screens/MyFilmsListView.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyFilmsListView(),
+      home: const MyFilsGridView(),
     );
   }
 }
