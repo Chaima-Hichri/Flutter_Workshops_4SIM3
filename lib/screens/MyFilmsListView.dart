@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:workshops_flutter_4sim3/Widgets/CustomDrawer.dart';
 import 'package:workshops_flutter_4sim3/Widgets/itemListView.dart';
+import 'package:workshops_flutter_4sim3/screens/Details.dart';
 
 import '../entities/Film.dart';
 class MyFilmsListView extends StatefulWidget {
@@ -21,14 +23,14 @@ class _MyFilmsListViewState extends State<MyFilmsListView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("G-STORE",style: TextStyle(color: Colors.white),),
-        backgroundColor: Colors.black,
-      ),
       body: ListView.builder(
          itemCount: films.length,
           itemBuilder: (context,index){
-           return itemListView(image: films[index].image, title: films[index].title);
+           return GestureDetector(
+             onTap: (){
+               Navigator.push(context, MaterialPageRoute(builder: (context)=>Details(film: films[index])));
+             },
+               child: itemListView(image: films[index].image, title: films[index].title));
           })
     );
   }

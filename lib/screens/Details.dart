@@ -1,29 +1,32 @@
 import 'package:flutter/material.dart';
+
+import '../entities/Film.dart';
 class Details extends StatefulWidget {
-  const Details({super.key});
+  final Film film;
+  const Details({super.key,required this.film});
 
   @override
   State<Details> createState() => _DetailsState();
 }
 
 class _DetailsState extends State<Details> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("House Of Dead"),
-        leading: IconButton(onPressed: (){}, icon: Icon(Icons.arrow_back)),
+        title: Text(widget.film.title),
       ),
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            Image.asset("assets/images/HouseOfDead.jpg"),
+            Image.asset(widget.film.image),
             SizedBox(height: 20,),
-            Text("Le lorem ipsum (également appelé faux-texte, lipsum, ou bolo bolo[1]) est, en imprimerie, une suite de mots sans signification utilisée à titre provisoire pour calibrer une mise en page, le texte définitif venant remplacer le faux-texte dès qu'il est prêt ou que la mise en page est achevée."),
+            Text(widget.film.description),
             SizedBox(height: 20,),
 
-            Text("300 DT",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 40),),
+            Text(widget.film.price.toString()+" DT",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 40),),
             SizedBox(height: 40,),
 
             Container(

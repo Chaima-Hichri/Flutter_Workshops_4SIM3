@@ -62,6 +62,7 @@ class _SignUpState extends State<SignUp> {
               SizedBox(height: 20,),
 
               TextFormField(
+                obscureText: true,
                 decoration: InputDecoration(
                     hintText: "Password",
                     hintStyle: TextStyle(color: Colors.black26),
@@ -78,13 +79,18 @@ class _SignUpState extends State<SignUp> {
               ),
               SizedBox(height: 20,),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text("Already have an account?"),
-                  SizedBox(width: 10,),
-                  Icon(Icons.arrow_forward_rounded,color: Colors.deepOrange,)
-                ],
+              InkWell(
+                onTap: (){
+                  Navigator.pushNamed(context, "/");
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Text("Already have an account?"),
+                    SizedBox(width: 10,),
+                    Icon(Icons.arrow_forward_rounded,color: Colors.deepOrange,)
+                  ],
+                ),
               ),
               SizedBox(height: 20,),
 

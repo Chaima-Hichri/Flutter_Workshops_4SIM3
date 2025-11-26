@@ -22,10 +22,7 @@ class _MyFilmsListViewState extends State<MyFilsGridView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("G-STORE",style: TextStyle(color: Colors.white),),
-          backgroundColor: Colors.black,
-        ),
+
         body: GridView.builder(
           itemCount: films.length,
 
