@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:workshops_flutter_4sim3/Widgets/CustomDrawer.dart';
 import 'package:workshops_flutter_4sim3/Widgets/itemListView.dart';
 import 'package:workshops_flutter_4sim3/screens/Details.dart';
@@ -12,6 +13,32 @@ class MyFilmsListView extends StatefulWidget {
 }
 
 class _MyFilmsListViewState extends State<MyFilmsListView> {
+  late Box<Film> favoriteBox;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    favoriteBox = Hive.box<Film>('favorites');
+  }
+
+  bool isFavorite(Film film){
+    return favoriteBox.values.any((f)=>f.title==film.title);
+  }
+
+  void toggleFavorite(Film film){
+    if (isFavorite(film)){
+      final key = favoriteBox.keys.firstWhere(((k)=>favoriteBox.get(k)!.title==film.title));
+      favoriteBox.delete(key);
+    }else{
+      favoriteBox.add(film);
+    }
+    setState(() {
+
+    });
+
+  }
+
 
   final List<Film> films = const [
     const Film("House Of Dead", "assets/images/HouseOfDead.jpg","The House of the Dead is a classic arcade light gun shooter series from Sega that features government agents fighting hordes of biologically engineered undead and mutants",300),
@@ -30,7 +57,15 @@ class _MyFilmsListViewState extends State<MyFilmsListView> {
              onTap: (){
                Navigator.push(context, MaterialPageRoute(builder: (context)=>Details(film: films[index])));
              },
-               child: itemListView(image: films[index].image, title: films[index].title));
+               child: itemListView(
+                   image: films[index].image,
+                   title: films[index].title,
+                 isFavorite:isFavorite(films[index]) ,
+                  addToFav: (){
+                    toggleFavorite(films[index]);
+                  }
+
+               ));
           })
     );
   }

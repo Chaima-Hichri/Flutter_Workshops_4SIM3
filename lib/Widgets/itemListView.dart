@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 class itemListView extends StatelessWidget {
   final String image;
   final String title ;
-  const itemListView({super.key,required this.image,required this.title});
+  final bool isFavorite;
+  final VoidCallback addToFav;
+  const itemListView({super.key,required this.image,required this.title,required this.isFavorite,required this.addToFav});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,9 @@ class itemListView extends StatelessWidget {
                       fontSize: 25,
                       fontWeight: FontWeight.bold
                   ),),
-                  Icon(Icons.star,color: Colors.amber,)
+                  GestureDetector(
+                    onTap:addToFav ,
+                      child: Icon(Icons.star,color: isFavorite ?Colors.amber:Colors.grey))
                 ],
               ),
             )
