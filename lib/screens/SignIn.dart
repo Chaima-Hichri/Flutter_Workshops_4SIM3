@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workshops_flutter_4sim3/screens/MyFilmsListView.dart';
 
 
@@ -88,6 +89,8 @@ class _SignInState extends State<SignIn> {
                     onPressed: () async{
                       if (_globalKey.currentState!.validate()) {
                         _globalKey.currentState!.save();
+                        SharedPreferences prefs = await SharedPreferences.getInstance();
+                        prefs.setString("email", email);
                         Navigator.pushReplacementNamed(context,"/tabBarNav" );
 
                       }

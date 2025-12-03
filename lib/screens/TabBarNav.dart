@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:workshops_flutter_4sim3/Widgets/CustomDrawer.dart';
+import 'package:workshops_flutter_4sim3/screens/Favorites.dart';
 import 'package:workshops_flutter_4sim3/screens/MyCart.dart';
 import 'package:workshops_flutter_4sim3/screens/MyFilmsGridView.dart';
 import 'package:workshops_flutter_4sim3/screens/MyFilmsListView.dart';
@@ -17,7 +18,7 @@ class _TabBarNavState extends State<TabBarNav> with SingleTickerProviderStateMix
   void initState() {
     // TODO: implement initState
     super.initState();
-    tabController=TabController(length: 3, vsync: this);
+    tabController=TabController(length: 4, vsync: this);
   }
   @override
   Widget build(BuildContext context) {
@@ -31,6 +32,7 @@ class _TabBarNavState extends State<TabBarNav> with SingleTickerProviderStateMix
               Tab(icon: Icon(Icons.list_alt_outlined),text: "My Films",),
               Tab(icon: Icon(Icons.list),text: "Ma bibliotheque",),
               Tab(icon: Icon(Icons.shopping_basket),text: "Basket",),
+              Tab(icon: Icon(Icons.favorite),text: "Favorites",),
             ]),
 
 
@@ -40,7 +42,8 @@ class _TabBarNavState extends State<TabBarNav> with SingleTickerProviderStateMix
           children: [
             MyFilmsListView(),
             MyFilsGridView(),
-            MyCart()
+            MyCart(),
+            Favorites()
 
       ]),
 

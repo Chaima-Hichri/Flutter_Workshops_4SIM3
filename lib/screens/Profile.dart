@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -8,9 +9,25 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
+   String EmailFromShared="";
   late String currentPassword,newPassword,Address;
   GlobalKey<FormState> _globalKey= GlobalKey<FormState>();
 
+
+  @override
+  void initState() {
+    getFromShared();
+    super.initState();
+  }
+
+
+  void getFromShared() async{
+    SharedPreferences prefs= await SharedPreferences.getInstance();
+    setState(() {
+      EmailFromShared= prefs.getString("email")??'vide';
+    });
+
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +40,7 @@ class _ProfileState extends State<Profile> {
             child: Column(children: [
               Center(child: Image.asset("assets/images/profil.png",width: 250,)),
               SizedBox(height: 15,),
-              Text("user@gmail.com"),
+              Text(EmailFromShared!),
               SizedBox(height: 15,),
 
               TextFormField(

@@ -8,9 +8,14 @@ class  CustomDrawer extends StatelessWidget {
       child: ListView(
         children: [
           DrawerHeader(child: Image.asset("assets/images/logo.png")),
-          ListTile(
-            leading:Icon(Icons.person),
-            title: Text("Update Profile"),
+          GestureDetector(
+            onTap: (){
+              Navigator.pushNamed(context, "/profile");
+            },
+            child: ListTile(
+              leading:Icon(Icons.person),
+              title: Text("Update Profile"),
+            ),
           ),
           GestureDetector(
             onTap: (){
