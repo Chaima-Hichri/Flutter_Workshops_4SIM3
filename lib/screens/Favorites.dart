@@ -34,7 +34,9 @@ class _FavoritesState extends State<Favorites> {
   Widget build(BuildContext context) {
     List<Film> favoriteFilms = favoriteBox.values.toList();
     return Scaffold(
-   body:ListView.builder(
+   body:favoriteFilms.isNotEmpty
+
+   ?ListView.builder(
      itemCount: favoriteFilms.length,
 
        itemBuilder: (context,index){
@@ -46,7 +48,10 @@ class _FavoritesState extends State<Favorites> {
               removeFilm(favoriteFilms[index]);
             },
             );
-       }),
+       })
+
+       :Center(child: Text("No favorite films yet"),
+    ),
     );
   }
 }

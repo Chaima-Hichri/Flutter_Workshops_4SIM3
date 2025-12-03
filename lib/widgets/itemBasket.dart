@@ -1,11 +1,17 @@
 
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 class Itembasket extends StatelessWidget {
   final String image;
   final String title ;
+  final VoidCallback deleteItem;
 
-  const Itembasket({super.key, required this.title,required this.image});
+  const Itembasket({super.key,
+    required this.title,
+    required this.image,
+    required this.deleteItem});
 
 
   @override
@@ -16,7 +22,9 @@ class Itembasket extends StatelessWidget {
         children: [
           Image.asset("$image" ,width: 150,),
           Text("$title"),
-          Icon(Icons.delete,size: 30,color: Colors.red,)
+          GestureDetector(
+            onTap: deleteItem,
+              child: Icon(Icons.delete,size: 30,color: Colors.red,))
 
         ],
       ),

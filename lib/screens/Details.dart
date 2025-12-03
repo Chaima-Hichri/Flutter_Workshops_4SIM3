@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workshops_flutter_4sim3/databaseSqlFlite/Mydb.dart';
 
 import '../entities/Film.dart';
 class Details extends StatefulWidget {
@@ -33,7 +34,12 @@ class _DetailsState extends State<Details> {
               width: 130,
               height: 50,
               child: ElevatedButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    Mydb.addItem(widget.film);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text( "${widget.film.title} ajouté au panier"))
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.deepOrange,
                       foregroundColor: Colors.white
