@@ -4,6 +4,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:provider/provider.dart';
 import 'package:workshops_flutter_4sim3/entities/Film.dart';
 import 'package:workshops_flutter_4sim3/providers/AuthProvider.dart';
+import 'package:workshops_flutter_4sim3/providers/FilmProvider.dart';
 import 'package:workshops_flutter_4sim3/screens/BottomNavBar.dart';
 import 'package:workshops_flutter_4sim3/screens/Details.dart';
 import 'package:workshops_flutter_4sim3/screens/MyFilmsGridView.dart';
@@ -18,15 +19,17 @@ void main() async {
   runApp(
   MultiProvider(
     providers: [
-      ChangeNotifierProvider(create: (_)=>Authprovider())
+      ChangeNotifierProvider(create: (_)=>Authprovider()),
+      ChangeNotifierProvider(create: (_)=>FilmProvider()),
+
     ],
     child: MyApp(),
   )
   );
- /* WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(FilmAdapter());
-  await Hive.openBox<Film>('favorites');*/
+  await Hive.openBox<Film>('favorites');
 
 }
 

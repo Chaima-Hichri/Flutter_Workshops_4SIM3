@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:workshops_flutter_4sim3/constants/constants.dart';
 import 'package:workshops_flutter_4sim3/databaseSqFlite/Mydb.dart';
 
 import '../entities/Film.dart';
@@ -22,7 +23,7 @@ class _DetailsState extends State<Details> {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            Image.asset(widget.film.image),
+            Image.network(constants.base_url+widget.film.image),
             SizedBox(height: 20,),
             Text(widget.film.description),
             SizedBox(height: 20,),

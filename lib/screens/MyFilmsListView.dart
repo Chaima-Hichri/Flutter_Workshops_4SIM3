@@ -15,7 +15,7 @@ class MyFilmsListView extends StatefulWidget {
 }
 
 class _MyFilmsListViewState extends State<MyFilmsListView> {
- // late Box<Film> favoriteBox;
+  late Box<Film> favoriteBox;
 
   @override
   void initState() {
@@ -23,14 +23,14 @@ class _MyFilmsListViewState extends State<MyFilmsListView> {
     WidgetsBinding.instance.addPostFrameCallback((_){
       Provider.of<FilmProvider>(context,listen: false).fetchFilms();
     });
-   // favoriteBox = Hive.box<Film>('favorites');
+    favoriteBox = Hive.box<Film>('favorites');
   }
 
- /* bool isFavorite(Film film){
+  bool isFavorite(Film film){
     return favoriteBox.values.any((f)=>f.title==film.title);
-  }*/
+  }
 
- /* void toggleFavorite(Film film){
+ void toggleFavorite(Film film){
     if (isFavorite(film)){
       final key = favoriteBox.keys.firstWhere(((k)=>favoriteBox.get(k)!.title==film.title));
       favoriteBox.delete(key);
@@ -41,7 +41,7 @@ class _MyFilmsListViewState extends State<MyFilmsListView> {
 
     });
 
-  }*/
+  }
 
 
   @override
@@ -61,8 +61,9 @@ class _MyFilmsListViewState extends State<MyFilmsListView> {
                child: itemListView(
                    image:film.image,
                    title: film.title,
-                 isFavorite:true,
+                 isFavorite:isFavorite(film),
                   addToFav: (){
+                    toggleFavorite(film);
                   }
 
                ));
