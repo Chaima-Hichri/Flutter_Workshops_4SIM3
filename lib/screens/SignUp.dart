@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:workshops_flutter_4sim3/providers/AuthProvider.dart';
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
 
@@ -13,6 +15,7 @@ class _SignUpState extends State<SignUp> {
   GlobalKey<FormState> _globalKey=GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    final authProvider =Provider.of<Authprovider>(context);
     return Scaffold(
       body: Form(
         key:_globalKey ,
@@ -101,19 +104,33 @@ class _SignUpState extends State<SignUp> {
                     backgroundColor: Colors.deepOrange,
                     foregroundColor: Colors.white
                   ),
-                    onPressed: (){
+                    onPressed: () async{
                     if(_globalKey.currentState!.validate()){
                       _globalKey.currentState!.save();
-                      showDialog(context: context, builder: (context){
-                        return AlertDialog(
-                          title: Text("Informations"),
-                          content: Text("Welcome "+username),
-                        );
-                      });
+                      bool success = await authProvider.signUp(username, email, password);
+                      print(success);
+
+                      if(success){
+                        Navigator.pushNamed(context, "/");
+                      }
+
+                      else{
+                        showDialog(context: context, builder: (context){
+                          return AlertDialog(
+                            title: Text("Error"),
+                            content: Text("Failed to sign up"),
+                          );
+                        });
+                      }
+
                     }
 
                     },
-                    child: Text("SIGN UP")),
+                    child:authProvider.isLoading
+
+                    ?CircularProgressIndicator(color: Colors.white,)
+
+                    :Text("SIGN UP")),
               )
 
             ],

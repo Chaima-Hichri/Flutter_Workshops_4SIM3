@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:workshops_flutter_4sim3/constants/constants.dart';
 
 class itemListView extends StatelessWidget {
   final String image;
@@ -16,7 +17,7 @@ class itemListView extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            Image.asset("$image"),
+            Image.network(constants.base_url+"$image"),
             Padding(
               padding: const EdgeInsets.only(top: 10),
               child: Row(

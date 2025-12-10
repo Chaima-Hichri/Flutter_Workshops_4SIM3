@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:workshops_flutter_4sim3/screens/MyFilmsListView.dart';
+
+import '../providers/AuthProvider.dart';
 
 
 class SignIn extends StatefulWidget {
@@ -16,6 +19,8 @@ class _SignInState extends State<SignIn> {
   late String password;
   GlobalKey<FormState> _globalKey = GlobalKey<FormState>();
   Widget build(BuildContext context) {
+    final authProvider =Provider.of<Authprovider>(context);
+
     return Scaffold(
       body: Form(
         key: _globalKey,
@@ -89,13 +94,28 @@ class _SignInState extends State<SignIn> {
                     onPressed: () async{
                       if (_globalKey.currentState!.validate()) {
                         _globalKey.currentState!.save();
-                        SharedPreferences prefs = await SharedPreferences.getInstance();
-                        prefs.setString("email", email);
-                        Navigator.pushReplacementNamed(context,"/tabBarNav" );
+                        bool success= await  authProvider.signIn(email, password);
+                        if(success){
+                          Navigator.pushReplacementNamed(context,"/tabBarNav" );
+                          SharedPreferences prefs = await SharedPreferences.getInstance();
+                          prefs.setString("email", email);
+                        }
+
+                        else{
+                          showDialog(context: context, builder: (context){
+                            return AlertDialog(
+                              title: Text("Error"),
+                              content: Text("Failed to sign in"),
+                            );
+                          });
+                        }
+
 
                       }
                     },
-                    child: Text("SIGN IN")),
+                    child:authProvider.isLoading
+                    ?CircularProgressIndicator()
+                    :Text("SIGN IN")),
               )
             ],
           ),
